@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}UniConX | Forum{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1>Discussion Forum</h1>
+    <div id="posts">
+        <!-- Posts will be dynamically added here -->
+    </div>
+    <div id="new-post">
+        <h2>Create a New Post</h2>
+        <input type="text" id="post-title" placeholder="Title">
+        <input type="text" id="post-username" placeholder="Username">
+        <textarea id="post-content" placeholder="Content"></textarea>
+        <button id="submit-post">Submit</button>
+    </div>
+</div>
+
+<script>
+    
+// JavaScript code for handling forum functionality
+const postsContainer = document.getElementById('posts');
+const postTitleInput = document.getElementById('post-title');
+const postContentInput = document.getElementById('post-content');
+const submitButton = document.getElementById('submit-post');
+const usernameInput = document.getElementById('post-username'); // Add an input field for the username.
+
+submitButton.addEventListener('click', () => {
+    const title = postTitleInput.value;
+    const content = postContentInput.value;
+    const username = usernameInput.value; // Add an input field for the username.
+
+    if (title && content && username) {
+        const postElement = document.createElement('div');
+        postElement.classList.add('post');
+        postElement.innerHTML = `
+            <h3 class="post-title">${title}</h3>
+            <p>${content}</p>
+            <p class="post-info">Posted by ${username} on ${getCurrentDateTime()}</p>
+            <button class="edit-post">Edit</button>
+            <button class="delete-post">Delete</button>
+        `;
+
+        const editButton = postElement.querySelector('.edit-post');
+        const deleteButton = postElement.querySelector('.delete-post');
+
+        editButton.addEventListener('click', () => {
+            // Implement post editing functionality here.
+             // When the edit button is clicked, populate the input fields for editing
+             postTitleInput.value = title;
+                postContentInput.value = content;
+                usernameInput.value = username;
+                editingPost = postElement; // Set the editingPost variable
+        });
+
+        deleteButton.addEventListener('click', () => {
+            postsContainer.removeChild(postElement); // Remove the post from the DOM
+            // Implement post deletion functionality here.
+        });
+
+        postsContainer.appendChild(postElement);
+
+        // Clear input fields
+        postTitleInput.value = '';
+        postContentInput.value = '';
+    } else {
+        alert('Please fill in all fields.');
+    }
+});
+
+function getCurrentDateTime() {
+    const now = new Date();
+    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    return now.toLocaleDateString('en-US', options);
+}
+</script>
+{% endblock %}

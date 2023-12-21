@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}UniConX | Login{% endblock %}
+
+{% block main %}
+<div class="form-element">
+    <form action="{{ url_for('login') }}" method="post">
+        <h1><strong>LOGIN</strong></h1>
+
+        {% if authentication_failed %}
+            <div class="alert alert-danger">
+                Invalid credentials. Please try again.
+            </div>
+        {% endif %}
+
+        <label for="email-login">Email Address:</label>
+        <input id="email-login" type="text" name="email" required placeholder="youremail@email.com"/><br>
+
+        <label for="password-login">Password:</label>
+        <input id="password-login" type="password" name="password" required placeholder="************"/><br>
+
+        <br>
+        <input type="submit" value="LOGIN" class="submit" name="submit">
+    </form>
+    <p class="form">Don't have an account? <a href="{{ url_for('create_account_form') }}">Sign Up</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}UniConX | Contact Us{% endblock %}
+
+{% block main %}
+<div class="contact-img-container">
+    <img  src="https://us.123rf.com/450wm/photobyphotoboy/photobyphotoboy1808/photobyphotoboy180800082/106004621-travelers-are-planning-a-trip-by-searching-the-route-on-the-map-and-searching-for-information-on-the.jpg?ver=6" style="width:100% ; opacity: 0.9";>
+    <div class="contact-us">Contact Us</div>
+</div>
+<div class="contact-form">
+    <h1>Questions? Send us a message!</h1>
+    <br>
+    <div class="form-group">
+        <label for="nameInput">Name *</label>
+        <input type="name" class="form-control" id="InputName" aria-describedby="emailHelp" placeholder="John" required>
+        <br>
+        <input type="name" class="form-control" id="InputName" aria-describedby="emailHelp" placeholder="Doe" required>
+    </div>
+    <label for="userType">Select an Option: *</label>
+    <br>
+    <div class="radio-buttons">
+        
+        <input type="radio" id="student" name="userType" value="Student" required>
+        <label for="student">Student</label><br>
+        <input type="radio" id="recruiter" name="userType" value="Recruiter">
+        <label for="recruiter">Recruiter</label><br>
+        <input type="radio" id="educator" name="userType" value="Educator">
+        <label for="educator">Educator</label><br>
+    </div>
+    <div class="form-group">
+        <label for="phoneInput">Phone Number *</label>
+        <input type="phone" class="form-control" id="phoneInput" aria-describedby="numberHelp" placeholder="(123) 456-7890" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email Address *</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="johndoe@email.com" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Message *</label>
+        <textarea class="form-control" id="messageInput" rows="3" placeholder="Enter text here..." required></textarea>
+    </div>
+    <br>
+    <div class="button-container"> 
+        <input type="submit" value="SUBMIT" class="submit" name="submit">
+    </div>
+</div>
+{% endblock %}

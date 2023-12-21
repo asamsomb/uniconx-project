@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}UniConX | Forum{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1>Discussion Forum</h1>
+    <div id="posts">
+        <!-- Posts will be dynamically added here -->
+        <h2>Posted Discussions</h2>
+        <ul>
+            {% for post, email in posts %}
+                <li>
+                    <div class="discuss-box" id="post_{{ post.post_id }}">
+                        <strong>{{ post.title }}</strong><br>Posted by <em><u>{{ email }}</u></em> on 
+                        {{ post.post_date_time }}<br>
+                        <p id="post_content_{{ post.post_id }}">{{ post.content }}</p>
+                        {% if current_user.is_authenticated and current_user.user_id == post.user_id %}
+                            <button onclick="toggleEditForm('{{ post.post_id }}')">Edit</button>
+                            <form id="edit-form_{{ post.post_id }}" style="display: none;" method="post" action="{{ url_for('edit_post', post_id=post.post_id) }}">
+                                <label for="new_title">New Title: </label>
+                                <input type="text" name="new_title" required>
+                                <br>
+                                <label for="new_content">New Content: </label>
+                                <textarea name="new_content" required></textarea>
+                                <br>
+                                <input type="submit" value="Save Changes">
+                            </form>
+                            <form method="post" action="{{ url_for('delete_post', post_id=post.post_id) }}">
+                                <button type="submit">Delete</button>
+                            </form>
+                        {% endif %}
+
+                        <h3>Comments</h3>
+                        {% for comment, comment_user_email in comments[post.post_id] %}
+                            <div class="comment-container">
+                                <div class="comment-container-container">
+                                    <p class="comment">{{ comment.comment_date_time }} | <em>{{ comment_user_email }}</em> replied:</p>
+                                    <p class="comment">{{ comment.comment_content }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <!-- COMMENT FORM -->
+                        <a class="comment-link" href="javascript:void(0)" onclick="toggleCommentForm('{{ post.post_id }}')">Comment</a>
+                        <form id="comment-form_{{ post.post_id }}" style="display: none;" method="post" action="{{ url_for('add_comment', post_id=post.post_id) }}">
+                            <label for="comment_content">Add Comment: </label>
+                            <textarea name="comment_content" required></textarea>
+                            <br>
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+            <!-- dummy posts -->
+            <li>
+                <div class="discuss-box">
+                    <strong>How can we highlight our coursework and coding projects in a way that
+                         showcases our abilities and relevance to potential internship roles? Are 
+                         there specific types of projects or coursework that recruiters find particularly
+                        impressive for sophomores?</strong><br>Posted by <em><u>mgarcia32@university.edu</u></em> on 
+                    2023-11-23 15:22:02<br>
+                    <p>Hey everyone, I'm currently a sophomore and getting into the internship 
+                        application process. I'm curious about your experiences in effectively 
+                        showcasing coursework and coding projects on resumes or portfolios to make 
+                        a good impression on recruiters. What strategies have you found successful 
+                        in emphasizing not just technical skills but also problem-solving abilities 
+                        and creativity? Additionally, are there specific types of projects or 
+                        coursework that recruiters tend to find particularly impressive for 
+                        sophomores? I'm navigating this territory for the first time and 
+                        would appreciate any insights or tips you may have on crafting a 
+                        compelling narrative around academic experiences for internship applications. 
+                        Thanks! - M. Garcia</p>
+
+                    <h3>Comments</h3>
+                    <div class="comment-container">
+                        <div class="comment-container-container">
+                            <p class="comment">2023-11-26 09:33:42 | <em>t_vine00@university.edu</em> replied:</p>
+                            <p class="comment">Hi M. Garcia,<br>
+                                Exciting times ahead! To make your coursework and coding projects stand out:<br>
+                                - Tell a story for each project. Explain the problem, your solution, and the impact it made.
+                                - Mention group projects to showcase teamwork skills.
+                                - Customize your portfolio for each internship application.
+                                Best of luck with your applications!</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    {% if current_user.is_authenticated %}
+    <hr>
+    <div id="new-post">
+        <form method="post" action="{{ url_for('forum') }}">
+            <h2>Create a New Post</h2>
+            <label for="post-title">Title: </label>
+            <input type="text" name="title" id="post-title" placeholder="Title" required>
+            <br>
+            <label for="post-content">Post Content: </label>
+            <textarea id="post-content" name="content" placeholder="Post Content" required></textarea>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    {% else %}
+    <hr>
+    <p class="discussion-account"><a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('create_account_form') }}">Create an Account</a> to post, edit, or comment a thread.</p>
+    {% endif %}
+</div>
+
+<script>
+    function toggleEditForm(postId) {
+        const editForm = document.getElementById(`edit-form_${postId}`);
+        editForm.style.display = (editForm.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function toggleCommentForm(commentId) {
+        const commentForm = document.getElementById(`comment-form_${commentId}`);
+        commentForm.style.display = (commentForm.style.display === 'none') ? 'block' : 'none';
+    }
+</script>
+<br>
+{% endblock %}

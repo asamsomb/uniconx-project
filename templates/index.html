@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}UniConX | Home{% endblock %}
+
+{% block main %}
+<div class="home-img-container" >
+    <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" style="width:100% ; opacity: 0.9";>
+    <div class="home">
+      <p class="home-message">At <em>UniConX</em>, we strive to offer you solutions on how to improve your network with mentors, recruiters, and others just like you.
+        As you make the decision to take on your challenges with <em>UniConX</em>, explore our many ways on how we've set other professionals 
+        for success, and how you can be next.</p>
+    </div>
+</div>
+<h1>Get Started</h1>
+<div class="card-container">
+    <div class="card" style="width:20rem;">
+      <img class="card-img-top" src="https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Card image cap">
+      <div class="card-body">
+          <h5 class="card-title">Tech Portfolio</h5>
+          <p>Join groups to elevate your code experience, skills, and team work.</p>
+          <br>
+          <a href="{{ url_for('tech_portfolio')}}" class="btn btn-primary">Go</a>
+      </div>
+    </div>
+    <div class="card" style="width:20rem;">
+        <img class="card-img-top" src="https://images.pexels.com/photos/6325984/pexels-photo-6325984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Mentorship</h5>
+            <p>Take an assessment and schedule a virtual meeting with an assigned mentor that best fits your needs.</p>
+            <a href="#" class="btn btn-primary">Go</a>
+        </div>
+    </div>
+    <div class="card" style="width:20rem;">
+        <img class="card-img-top" src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Interview Preparation</h5>
+            <p>AI integrated interviews that will provide performance feedback, preparing you for live interviews.</p>
+            <a href="#" class="btn btn-primary">Go</a>
+        </div>
+    </div>
+    <div class="card" style="width:20rem;">
+        <img class="card-img-top" src="https://images.pexels.com/photos/7691721/pexels-photo-7691721.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Discussion Forums</h5>
+            <p>Communication with others about resume, interview, recruiting trends and strategies on discussion forums.</p>
+            <a href="{{ url_for('forum')}}" class=" btn btn-primary">Go</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

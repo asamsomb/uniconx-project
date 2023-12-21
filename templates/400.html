@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}UniConX | Bad Request{% endblock %}
+
+{% block main %}
+<h1 class="error-heading">400 - Bad Request</h1>
+<br>
+<br>
+<p class="error-message">ERROR: User with the same email already exists! Use a different email!</p>
+<br>
+<div class="error-return-container">
+    <a href="{{ url_for('index') }}" class="access-denied-home">Return to Home Page</a>
+</div>
+{% endblock %}

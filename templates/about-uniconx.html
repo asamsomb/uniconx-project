@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}UniConX | About Us{% endblock %}
+
+{% block main %}
+<div class="about-img-container">
+    <img  src="https://shrm-res.cloudinary.com/image/upload/c_crop,h_1655,w_3865,x_0,y_116/w_auto:100,w_2100,h_900,q_auto,f_auto/v1/Organizational%20and%20Employee%20Development/iStock-638953230_n3clzp" style="width:100% ; opacity: 0.9";>
+    <div class="about-us">About Us...</div>
+</div>
+<div style="margin-top: 25px;">
+    <h4 class="sub-headers">Our Mission</h4>
+</div>
+<div> 
+    <p class="about-para">At UniConX, we are a collective of five dynamic and passionate individuals who came together with a shared
+      vision to empower ambitious students and recent graduates on their journey to success. We recognize that today's competitive job market
+      demands more than just a degree; it requires a blend of skills, confidence, and a personalized approach.
+    </p>
+    <p class="about-para">
+      With this, our mission is to build a bridge to connect the gap between academic achievement and real-world opportunities.
+      Our commitment to providing the guidance, resources, and support necessary to elevate aspiring individuals, like yourself, 
+      is at the core of our mission. We are dedicated to empowering professionals ready to ace interviews, secure their dream 
+      jobs, and thrive in their roles. Our personalized approach ensures that every step of your journey is tailored to your 
+      unique aspirations, allowing you to confidently navigate the path to success. Join us, and let's embark on this empowering journey together.
+    </p>
+    <p class="about-para">
+      Interested in learning more? Visit our <a href="https://www.youtube.com">media gallery</a> and see what others think!
+    </p>
+</div>
+<div>
+    <h4 class="sub-headers">What We Offer</h4>
+    <p>
+        <ul  class="about-bullet" style="list-style-type:circle">
+            <li>ullamcorper malesuada proin libero nunc</li>
+            <li> in nulla posuere sollicitudin aliquam</li>
+            <li> vulputate enim nulla aliquet porttitor</li>
+            <li>vulputate enim nulla aliquet porttitor</li>
+          </ul>
+    </p>
+    <p class="about-quote" style="text-align: center; font-weight: 300; margin-top: 25px;">"Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it. ~ Steve Jobs"</p>
+</div>
+<div class="button-container"> 
+    <form action="{{ url_for('create_account_redirect') }}" method="post">
+      <input type="submit" value="SIGN UP" class="submit" name="submit">
+    </form>
+</div>
+<br>
+{% endblock %}
